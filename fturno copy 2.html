@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>M+ | Farmacias de turno</title>
+<style>
+  :root{
+    --grad1:#b8f1e0; --grad2:#14c6d1;
+    --brand:#0bbbd7; --ink:#08303f; --card:#e8fff6;
+    --cta:#41c75c; --cta-ink:#063a22; --bar:#2aa1d8;
+  }
+  *{box-sizing:border-box}
+  body{margin:0; font-family:Inter,system-ui,Roboto,Arial,sans-serif;
+       color:var(--ink); background:linear-gradient(180deg,var(--grad1),var(--grad2))}
+  header{
+    position:sticky; top:0; z-index:10;
+    display:flex; align-items:center; justify-content:space-between;
+    gap:.5rem; padding:.75rem 1rem;
+    background:#bdf3ffcc; backdrop-filter:blur(6px);
+  }
+  .h-side{display:flex; align-items:center; gap:.5rem}
+  .icon-btn{border:none; background:transparent; cursor:pointer; padding:.35rem}
+  .icon-btn svg{width:28px;height:28px}
+  .brand{
+    display:flex; align-items:center; gap:.6rem; margin-inline:auto;
+    background:#e8fdff; padding:.3rem .7rem; border-radius:14px;
+    box-shadow:0 6px 14px rgba(0,0,0,.08);
+  }
+  .brand-badge{width:46px;height:32px;border-radius:9px;background:#fff;display:grid;place-items:center;color:#18a34a;font-weight:900}
+  .brand-text{font-weight:800; color:#079fb0}
+
+  main{max-width:760px; margin:0 auto; padding:1rem}
+  .page-title{
+    display:flex; align-items:end; gap:.6rem; margin: .25rem 0 1rem;
+    background:#c9f8e0; border-top-right-radius:26px; padding:.55rem .9rem;
+    box-shadow:0 8px 0 #7bd59e;
+  }
+  .page-title h1{margin:0; font-size:1.25rem; letter-spacing:.6px; color:#0b5670; text-shadow:0 1px 0 #fff}
+  .city{font-style:italic; font-weight:900; color:#41a85f; margin:.5rem .25rem}
+  .list{display:grid; gap:1rem}
+
+  .card{
+    position:relative; background:var(--card);
+    border-radius:18px; padding:0 0 .85rem 0; overflow:hidden;
+    box-shadow: 10px 10px 0 #08303f, 0 8px 18px rgba(0,0,0,.18);
+  }
+  .card-head{
+    background:linear-gradient(180deg,#48c9ff,#1aa0db);
+    color:#fff; font-weight:900; letter-spacing:.3px;
+    padding:.7rem 1rem; font-size:1.15rem;
+  }
+  .card-body{padding:.75rem 1rem .25rem}
+  .addr{font-size:1rem; font-weight:800; letter-spacing:.3px; margin:.25rem 0 .65rem}
+
+  .actions{display:flex; gap:.6rem; padding:0 1rem .5rem}
+  .btn{
+    flex:1; border:none; cursor:pointer; border-radius:12px;
+    padding:.6rem .8rem; font-weight:900; letter-spacing:.3px;
+    background:linear-gradient(180deg,#7ae78e,#41c75c); color:var(--cta-ink);
+    box-shadow:0 6px 0 #2b9f43;
+  }
+  .btn:active{transform:translateY(1px); box-shadow:0 5px 0 #2b9f43}
+
+  /* util */
+  .sr-only{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0,0,0,0)}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="h-side">
+    <button class="icon-btn" onclick="history.back()" aria-label="Atrás">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>
+    </button>
+  </div>
+
+  <div class="brand" aria-label="Marca">
+    <div class="brand-badge">m+</div>
+    <div class="brand-text">Salud</div>
+  </div>
+
+  <div class="h-side">
+    <a class="icon-btn" href="index.html" aria-label="Inicio">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 10l9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+    </a>
+  </div>
+</header>
+
+<main>
+  <div class="page-title">
+    <h1>FARMACIAS DE TURNO</h1>
+  </div>
+
+  <!-- Miramar -->
+  <h2 class="city">Miramar</h2>
+  <section class="list" aria-label="Miramar">
+    <article class="card">
+      <div class="card-head">Beni</div>
+      <div class="card-body">
+        <div class="addr">CALLE 9 N° 2345</div>
+      </div>
+      <div class="actions">
+        <button class="btn" data-phone="+549000000000">CONTACTO</button>
+        <button class="btn" data-map="CALLE 9 2345, Miramar">CÓMO LLEGAR</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">Acha</div>
+      <div class="card-body">
+        <div class="addr">DIAGONAL ILLIA 736</div>
+      </div>
+      <div class="actions">
+        <button class="btn" data-phone="+549000000001">CONTACTO</button>
+        <button class="btn" data-map="Diagonal Illia 736, Miramar">CÓMO LLEGAR</button>
+      </div>
+    </article>
+  </section>
+
+  <!-- Otamendi -->
+  <h2 class="city">Otamendi</h2>
+  <section class="list" aria-label="Otamendi">
+    <article class="card">
+      <div class="card-head">Rojas Juan Carlos</div>
+      <div class="card-body">
+        <div class="addr">BELGRANO 499</div>
+      </div>
+      <div class="actions">
+        <button class="btn" data-phone="+549000000002">CONTACTO</button>
+        <button class="btn" data-map="Belgrano 499, Otamendi">CÓMO LLEGAR</button>
+      </div>
+    </article>
+
+    <article class="card">
+      <div class="card-head">Dionisia</div>
+      <div class="card-body">
+        <div class="addr">SAN MARTÍN 120</div>
+      </div>
+      <div class="actions">
+        <button class="btn" data-phone="+549000000003">CONTACTO</button>
+        <button class="btn" data-map="San Martín 120, Otamendi">CÓMO LLEGAR</button>
+      </div>
+    </article>
+  </section>
+</main>
+
+<script>
+  // Acción "Contacto" -> abre teléfono o WhatsApp
+  document.querySelectorAll('.btn[data-phone]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const tel = b.dataset.phone;
+      // cambiá por "https://wa.me/..." si preferís WhatsApp
+      window.location.href = tel:${tel};
+    });
+  });
+
+  // Acción "Cómo llegar" -> abre Google Maps
+  document.querySelectorAll('.btn[data-map]').forEach(b=>{
+    b.addEventListener('click',()=>{
+      const q = encodeURIComponent(b.dataset.map);
+      window.open(https://www.google.com/maps/search/?api=1&query=${q},'_blank');
+    });
+  });
+</script>
+</body>
+</html>

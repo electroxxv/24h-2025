@@ -1,0 +1,195 @@
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="style.css">
+  <title>M+ | Inicio</title>
+<link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+  <!-- Leaflet JS -->
+  <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+  <header aria-label="Barra superior">
+<header aria-label="Barra superior">
+  <button id="btnMenu" class="icon-btn" aria-label="Abrir menú">
+    <!-- Icono menú -->
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <path d="M3 6h18M3 12h18M3 18h18"/>
+    </svg>
+  </button>
+</header>
+
+  <nav id="menu" class="menu oculto">
+      <button id="btnCerrarMenu" class="close-btn" aria-label="Cerrar menú">✖</button>
+    <ul>
+      <li><a href="#">hijos y asociadoss</a></li>
+      <li><a href="#">obras sociales</a></li>
+      <li><a href="./login.html">cerrar sesion</a></li>
+    </ul>
+  </nav>
+
+    <div class="brand" aria-label="Marca">
+        <img src="./img/cruzar.png" alt="logo">
+    </div>
+
+    <a href="./perfil.html">
+      <div class="user-chip" title="Usuario">
+        <div class="user-ring">👤</div>
+        <span>USUARIO</span>
+      </div>
+    </header>
+  </a>
+
+  <main>
+    <div class="welcome" aria-live="polite">
+      <span>BIENVENIDO</span> <small>IGNACIO</small>
+    </div>
+
+    <div class="stack" role="navigation" aria-label="Acciones principales">
+      <!-- Farmacias de turno -->
+       <a href="./fturno.html">
+         <button class="action" type="button">
+           <span class="label">Farmacias de turno</span>
+           <span class="trailing" aria-hidden="true">
+             <img src="./img/cruzar.png" alt="Cruz turno">
+            </span>
+          </button>
+        </a>
+
+      <!-- Turnos médicos -->
+      <a href="./mturno.html">
+        <button class="action" type="button">
+          <span class="label">Turnos médicos</span>
+          <span class="trailing" aria-hidden="true">
+            <img src="./img/doctor.png" alt="">
+          </span>
+        </button>
+      </a>
+        
+      
+      <!-- Centros públicos -->
+       <a href="./cpublico.html">
+         <button class="action" type="button">
+           <span class="label">Centros públicos</span>
+           <span class="trailing" aria-hidden="true">
+             <img src="./img/cuidado-de-la-salud.png" alt="">
+            </span>
+          </button>
+        </a>
+
+      <!-- Centros privados -->
+       <a href="./cprivada.html">
+         <button class="action" type="button">
+           <span class="label">Centros privados</span>
+           <span class="trailing" aria-hidden="true">
+             <img src="./img/estetoscopio.png" alt="">
+            </span>
+          </button>
+        </a>
+
+      <!-- Historia clínica -->
+       <a href="./hclinica.html">
+         <button class="action secondary" type="button">
+           <span class="label">historial clinico</span>
+           <span class="trailing" aria-hidden="true">
+             <img src="./img/carpeta-medica.png" alt="">
+            </span>
+          </button>
+        </div>
+      </a>
+        
+    <!-- Mapa -->
+    <section class="map-card" aria-label="Mapa">
+      <div id="map"></div>
+    </section>
+  </main>
+
+
+  <!-- FABs -->
+  <button class="fab fab-left" aria-label="Emergencias">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+      <rect x="3" y="7" width="18" height="10" rx="2"/>
+      <path d="M6 17V7l3-3h6l3 3v10M12 9v6M9 12h6"/>
+    </svg>
+  </button>
+  <a href="./chatbot.html">
+    <button class="fab fab-right" aria-label="Asistente">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+        <rect x="3" y="4" width="18" height="14" rx="3"/>
+        <path d="M8 20h8M10 9h.01M14 9h.01"/>
+      </svg>
+    </button>
+  </a>
+
+<script>
+    // Inicializar mapa
+    const map = L.map('map').setView([-34.6037, -58.3816], 13); // Buenos Aires
+
+    // Capa OpenStreetMap
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      maxZoom: 19,
+      attribution: '&copy; OpenStreetMap contributors'
+    }).addTo(map);
+
+    // Datos de ejemplo para marcadores según tipo
+    const ubicaciones = {
+      farmacia: [
+        {lat:-34.602, lon:-58.382, name:"Farmacia Central"},
+        {lat:-34.605, lon:-58.384, name:"Farmacia Sur"}
+      ],
+      turno: [
+        {lat:-34.607, lon:-58.380, name:"Consultorio Dr. Pérez"},
+        {lat:-34.608, lon:-58.385, name:"Clínica Norte"}
+      ],
+      publico: [
+        {lat:-34.604, lon:-58.386, name:"Centro de Salud Público"}
+      ],
+      privado: [
+        {lat:-34.606, lon:-58.383, name:"Centro Privado VIP"}
+      ],
+      historia: [
+        {lat:-34.609, lon:-58.387, name:"Archivo Historia Clínica"}
+      ]
+    };
+
+    // Función para agregar marcadores
+    function agregarMarcadores(tipo) {
+      const lista = ubicaciones[tipo] || [];
+      lista.forEach(item=>{
+        const marker = L.marker([item.lat, item.lon]).addTo(map);
+        marker.bindPopup(`<b>${item.name}</b>`);
+      });
+    }
+
+const menu = document.getElementById("menu");
+const btnMenu = document.getElementById("btnMenu");
+const btnCerrarMenu = document.getElementById("btnCerrarMenu");
+
+// Abrir menú
+btnMenu.addEventListener("click", () => {
+  menu.classList.add("visible");
+});
+
+// Cerrar menú con botón ✖
+btnCerrarMenu.addEventListener("click", () => {
+  menu.classList.remove("visible");
+});
+
+// Cerrar menú al hacer clic en un enlace (solo móvil)
+document.querySelectorAll("#menu a").forEach(link => {
+  link.addEventListener("click", () => {
+    if (window.innerWidth < 768) {
+      menu.classList.remove("visible");
+    }
+  });
+});
+
+
+    // FABs
+    document.querySelector('.fab-left').addEventListener('click', ()=>alert('Llamando a emergencias…'));
+
+  </script>
+</body>
+</html>
